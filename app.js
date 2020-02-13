@@ -1,11 +1,9 @@
 const Koa = require('koa')
 
+const InitManager = require('./core/init')
+
 const app = new Koa()
 
-function test() {
-    console.log('demaxiya')
-}
-
-app.use(test)
+InitManager.initCore(app)
 
 app.listen(8020)
