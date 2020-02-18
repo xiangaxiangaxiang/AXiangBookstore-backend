@@ -6,9 +6,9 @@ router.post('/v1/:id/classic/latest', (ctx, next) => {
     const query = ctx.request.query
     const headers = ctx.request.header
     const body = ctx.request.body
-    console.log(path, query, headers, body)
-    ctx.body = {
-        hello: 'world'
+    if (true) {
+        const error = new global.errs.ParameterException()
+        throw error
     }
 })
 

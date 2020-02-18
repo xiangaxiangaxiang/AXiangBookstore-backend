@@ -1,14 +1,15 @@
-const requierDirectory = require('require-directory')
-const Router = require('koa-router')
+const requierDirectory = require("require-directory");
+const Router = require("koa-router");
 
 class InitManager {
-    static initCore(app) {
-        InitManager.app = app
-        InitManager.ininLoadRouter()
-    }
+  static initCore(app) {
+    InitManager.app = app;
+    InitManager.ininLoadRouter();
+    InitManager.loadErrors()
+  }
 
   static ininLoadRouter() {
-      const apiDirectory = `${process.cwd()}/app/api`
+    const apiDirectory = `${process.cwd()}/app/api`;
     // 自动加载注册路由
     requierDirectory(module, apiDirectory, {
       visit: whenLoadModule
@@ -20,6 +21,11 @@ class InitManager {
       }
     }
   }
+
+  static loadErrors() {
+    const errors = require("./http-exception")
+    global.errs = errors
+  }
 }
 
-module.exports = InitManager
+module.exports = InitManager;
