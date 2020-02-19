@@ -6,6 +6,13 @@ class InitManager {
     InitManager.app = app;
     InitManager.ininLoadRouter();
     InitManager.loadErrors()
+    InitManager.loadConfig()
+  }
+
+  static loadConfig(path = '') {
+    const configPath = path || process.cwd() + '/config/config.js'
+    const config = require(configPath)
+    global.config = config
   }
 
   static ininLoadRouter() {
