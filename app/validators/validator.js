@@ -16,10 +16,10 @@ class RegisterValidator extends LinValidator {
             new Rule('isEmail', '不符合Email规范', {})
         ]
         this.password1 = [
-            new Rule('isLength', '密码至少6个字符，最多32个字符'), {
+            new Rule('isLength', '密码至少6个字符，最多32个字符', {
                 min: 6,
                 max: 32
-            }
+            })
         ]
         this.password2 = this.password1
         this.nickname = [
