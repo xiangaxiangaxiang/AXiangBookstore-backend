@@ -7,9 +7,7 @@ router.post('/v1/:id/classic/latest', async (ctx, next) => {
     const query = ctx.request.query
     const headers = ctx.request.header
     const body = ctx.request.body
-    console.log('==================')
-    const v = new PositiveIntegerValidator().validate(ctx)
-    const c = await v
+    const v = await new PositiveIntegerValidator().validate(ctx)
     // if (true) {
     //     const error = new global.errs.ParameterException()
     //     throw error
