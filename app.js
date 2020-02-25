@@ -9,6 +9,7 @@ const app = new Koa()
 require('./app/models/user')
 require('./app/models/classic')
 require('./app/models/flow')
+require('./app/models/favor')
 
 app.use(catchError)
 app.use(parser())

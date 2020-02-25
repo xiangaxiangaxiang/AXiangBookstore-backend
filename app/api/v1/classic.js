@@ -15,7 +15,9 @@ router.get('/latest', new Auth().m, async (ctx, next) => {
     })
     const art = await Art.getData(flow.artId, flow.type)
     art.setDataValue('index', flow.index)
-    ctx.body = art
+    ctx.body = {
+        is_valid: result
+    }
 })
 
 module.exports = router
