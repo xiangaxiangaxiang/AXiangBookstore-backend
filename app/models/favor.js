@@ -20,7 +20,7 @@ class Favor extends Model {
                 type,
                 uid
             }, {transaction: t})
-            const art = await Art.getData(artId, type)
+            const art = await Art.getData(artId, type, false)
             await art.increment('fav_nums', {
                 by: 1,
                 transaction: t
@@ -44,12 +44,23 @@ class Favor extends Model {
                 force: true,
                 transaction: t
             })
-            const art = await Art.getData(artId, type)
+            const art = await Art.getData(artId, type, false)
             await art.decrement('fav_nums', {
                 by: 1,
                 transaction: t
             })
         })
+    }
+
+    static async userLikeIt(artId, type, uid) {
+        const favor = await Favor.findOne({
+            where: {
+                uid,
+                type,
+                artId
+            }
+        })
+        return favor ? true : false;
     }
 }
 
