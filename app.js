@@ -12,6 +12,8 @@ require('@models/user')
 require('@models/classic')
 require('@models/flow')
 require('@models/favor')
+require('@models/hot-book')
+require('@models/book')
 
 app.use(catchError)
 app.use(parser())
