@@ -94,11 +94,21 @@ class Art {
                 art = await Sentence.scope(scope).findOne(finder)
                 break
             case 400:
-                // art = await Movie.findOne(finder)
+                const {Book} = require('@models/book')
+                art = await Book.scope(scope).findOne(finder)
+                if (!art) {
+                    art = await Book.create({
+                        id: art_id
+                    })
+                }
                 break
             default:
                 break
         }
+        // if (art && art.image) {
+        //     let imgUrl = art.dataValues.image
+        //     art.dataValues.image = global.config.host + imgUrl
+        // }
         return art
     }
 }

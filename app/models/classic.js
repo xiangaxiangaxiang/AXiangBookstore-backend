@@ -2,7 +2,12 @@ const {Sequelize, Model} = require('sequelize')
 const { sequelize } = require('../../core/db')
 
 const classicFields = {
-    image: Sequelize.STRING,
+    image: {
+        type: Sequelize.STRING
+        // get() {
+        //     return global.config.host + this.getDataValue('image')
+        // }
+    },
     content : Sequelize.STRING,
     pubdate: Sequelize.DATEONLY,
     fav_nums: {

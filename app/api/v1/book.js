@@ -19,14 +19,12 @@ const {Comment} = require('@models/book-comment')
 
 router.get('/hot_list', async (ctx, next) => {
     const books = await HotBook.getAll()
-    ctx.body = {
-        books
-    }
+    ctx.body = books
 })
 
 router.get('/:id/detail', async (ctx) => {
     const v = await new PositiveIntegerValidator().validate(ctx)
-    const book = await new Book(v.get('path.id')).detail()
+    const book = await new Book().detail(v.get('path.id'))
     ctx.body = book
 })
 
@@ -63,8 +61,12 @@ router.get('/:book_id/short_comment', async (ctx) => {
     const v = await new PositiveIntegerValidator().validate(ctx, {
         id: 'book_id'
     })
-    const comment = await Comment.getComment(v.get('path.book_id'))
-    ctx.body = comment
+    const book_id = v.get('path.book_id')
+    const comments = await Comment.getComment(book_id)
+    ctx.body = {
+        comments,
+        book_id
+    }
 })
 
 router.get('/hot_keyword', async (ctx) => {
