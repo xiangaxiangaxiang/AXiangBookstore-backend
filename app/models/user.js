@@ -3,7 +3,7 @@ const {Sequelize, Model} = require('sequelize')
 const { sequelize } = require('../../core/db')
 
 class User extends Model {
-    static async verrifyEmailPassword(email, plainPassword) {
+    static async verifyEmailPassword(email, plainPassword) {
         const user = await User.findOne({
             where: {
                 email
